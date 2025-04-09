@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY worker.py .
+COPY main.py .
 
 # Comando para ejecutar el worker
 CMD ["celery", "-A", "worker", "worker", "--loglevel=info"]
