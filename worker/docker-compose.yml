@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - worker-network
+    volumes:
+      - redis-data:/data
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile-worker
+    depends_on:
+      - redis
+    networks:
+      - worker-network
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+networks:
+  worker-network:
+    driver: bridge
+
+volumes:
+  redis-data:
