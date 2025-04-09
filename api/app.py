@@ -9,8 +9,8 @@ app = FastAPI(title="API Demo Celery")
 # Configurar Celery para conectarse al Redis (en producción, cambiarás la IP)
 celery_app = Celery(
     "worker_tasks",
-    broker="redis://localhost:6379/0",  # En producción: redis://IP-DEL-WORKER:6379/0
-    backend="redis://localhost:6379/0"  # En producción: redis://IP-DEL-WORKER:6379/0
+    broker="redis://18.188.243.147:6379/0",  # En producción: redis://IP-DEL-WORKER:6379/0
+    backend="redis://18.188.243.147:6379/0"  # En producción: redis://IP-DEL-WORKER:6379/0
 )
 
 # Modelo para la solicitud
